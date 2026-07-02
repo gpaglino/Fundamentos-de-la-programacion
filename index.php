@@ -1,7 +1,4 @@
 <?php
-/**
- * index.php — Página de bienvenida pública de TecnoShop.
- */
 
 require_once __DIR__ . '/src/auth.php';
 iniciar_sesion_segura();
