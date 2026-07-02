@@ -1,0 +1,76 @@
+[
+    {
+        "id_pedido": 5001,
+        "id_usuario": 1,
+        "fecha_pedido": "2026-06-24 22:49:03",
+        "estado": "aprobado",
+        "fecha_aprobacion": "2026-06-24 22:50:00",
+        "items": [
+            {
+                "id_producto": 302,
+                "cantidad": 1,
+                "precio_unitario": 48900
+            }
+        ],
+        "total_pagado": 48900,
+        "pago_habilitado": true,
+        "medio_pago": "transferencia"
+    },
+    {
+        "id_pedido": 5002,
+        "id_usuario": 3,
+        "fecha_pedido": "2026-06-29 21:44:03",
+        "estado": "aprobado",
+        "items": [
+            {
+                "id_producto": 301,
+                "cantidad": 1,
+                "precio_unitario": 315000
+            },
+            {
+                "id_producto": 302,
+                "cantidad": 1,
+                "precio_unitario": 48900
+            },
+            {
+                "id_producto": 303,
+                "cantidad": 1,
+                "precio_unitario": 112000
+            },
+            {
+                "id_producto": 401,
+                "cantidad": 1,
+                "precio_unitario": 54000
+            },
+            {
+                "id_producto": 402,
+                "cantidad": 1,
+                "precio_unitario": 78500
+            },
+            {
+                "id_producto": 102,
+                "cantidad": 1,
+                "precio_unitario": 145000
+            },
+            {
+                "id_producto": 201,
+                "cantidad": 1,
+                "precio_unitario": 65000.5
+            },
+            {
+                "id_producto": 202,
+                "cantidad": 1,
+                "precio_unitario": 32500
+            },
+            {
+                "id_producto": 203,
+                "cantidad": 1,
+                "precio_unitario": 89900
+            }
+        ],
+        "total_pagado": 940800.5,
+        "pago_habilitado": true,
+        "fecha_aprobacion": "2026-06-29 21:45:32",
+        "medio_pago": "transferencia"
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "id_producto": 101,
+        "nombre": "Monitor Gamer Noblex 27\" 180Hz",
+        "categoria": "Monitores",
+        "precio": 289999,
+        "stock": 15
+    },
+    {
+        "id_producto": 102,
+        "nombre": "Monitor AOC 24\" Full HD 75Hz",
+        "categoria": "Monitores",
+        "precio": 145000,
+        "stock": 9
+    },
+    {
+        "id_producto": 201,
+        "nombre": "Teclado Mecánico RGB Switch Red",
+        "categoria": "Periféricos",
+        "precio": 65000.5,
+        "stock": 39
+    },
+    {
+        "id_producto": 202,
+        "nombre": "Mouse Gamer Logitech G203 8000 DPI",
+        "categoria": "Periféricos",
+        "precio": 32500,
+        "stock": 24
+    },
+    {
+        "id_producto": 203,
+        "nombre": "Auriculares HyperX Cloud II 7.1",
+        "categoria": "Periféricos",
+        "precio": 89900,
+        "stock": 11
+    },
+    {
+        "id_producto": 301,
+        "nombre": "Procesador AMD Ryzen 7 5700X",
+        "categoria": "Componentes",
+        "precio": 315000,
+        "stock": 7
+    },
+    {
+        "id_producto": 302,
+        "nombre": "Memoria RAM DDR4 16GB 3200MHz",
+        "categoria": "Componentes",
+        "precio": 48900,
+        "stock": 8
+    },
+    {
+        "id_producto": 303,
+        "nombre": "SSD NVMe 1TB Samsung 970 EVO",
+        "categoria": "Componentes",
+        "precio": 112000,
+        "stock": 5
+    },
+    {
+        "id_producto": 401,
+        "nombre": "Gabinete ATX Cooler Master Q300L",
+        "categoria": "Gabinetes",
+        "precio": 54000,
+        "stock": 4
+    },
+    {
+        "id_producto": 402,
+        "nombre": "Fuente 650W 80 Plus Bronze Corsair",
+        "categoria": "Gabinetes",
+        "precio": 78500,
+        "stock": 8
+    }
+]

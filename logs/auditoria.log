@@ -1,0 +1,26 @@
+[2026-06-23 13:41:10] [REGISTRO] Nueva postulación del usuario 'guillo' (Guillermo Paglino)
+[2026-06-23 13:41:24] [LOGIN_PENDIENTE] Usuario 'guillo' intentó ingresar con cuenta pendiente
+[2026-06-23 13:45:12] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-23 13:46:07] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Paglino' (ID: 3)
+[2026-06-24 22:48:41] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-24 22:49:03] [PEDIDO_CREADO] Usuario 'admin' realizó el pedido #5001 por $48,900.00
+[2026-06-29 21:20:33] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:21:38] [LOGOUT] Usuario 'admin' cerró sesión
+[2026-06-29 21:29:08] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:31:39] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:34:19] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:36:34] [STOCK_ACTUALIZADO] Admin 'admin' actualizó stock de 'Monitor AOC 24" Full HD 75Hz' a 10
+[2026-06-29 21:36:40] [STOCK_ACTUALIZADO] Admin 'admin' actualizó stock de 'Fuente 650W 80 Plus Bronze Corsair' a 9
+[2026-06-29 21:38:08] [STOCK_ACTUALIZADO] Admin 'admin' actualizó stock de 'Memoria RAM DDR4 16GB 3200MHz' a 9
+[2026-06-29 21:43:12] [LOGIN_EXITOSO] Usuario 'guillo' inició sesión correctamente
+[2026-06-29 21:44:03] [PEDIDO_CREADO] Usuario 'guillo' realizó el pedido #5002 por $940,800.50
+[2026-06-29 21:44:39] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:45:32] [PEDIDO_APROBADO] Admin 'admin' aprobó pedido #5002 de usuario 'guillo'
+[2026-06-29 21:53:36] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 21:56:23] [LOGIN_EXITOSO] Usuario 'guillo' inició sesión correctamente
+[2026-06-29 21:56:59] [LOGOUT] Usuario 'guillo' cerró sesión
+[2026-06-29 21:57:48] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 22:04:03] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-06-29 22:04:36] [USUARIO_ELIMINADO] Admin 'admin' eliminó usuario ID 2
+[2026-06-29 22:39:53] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-02 12:28:01] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente

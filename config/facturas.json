@@ -1,0 +1,61 @@
+[
+    {
+        "id_factura": 1001,
+        "id_pedido": 5002,
+        "id_usuario": 3,
+        "nombre_cliente": "Guillermo Paglino",
+        "email_cliente": "gpaglino@gmail.com",
+        "fecha_emision": "2026-06-29 21:45:32",
+        "items": [
+            {
+                "id_producto": 301,
+                "cantidad": 1,
+                "precio_unitario": 315000
+            },
+            {
+                "id_producto": 302,
+                "cantidad": 1,
+                "precio_unitario": 48900
+            },
+            {
+                "id_producto": 303,
+                "cantidad": 1,
+                "precio_unitario": 112000
+            },
+            {
+                "id_producto": 401,
+                "cantidad": 1,
+                "precio_unitario": 54000
+            },
+            {
+                "id_producto": 402,
+                "cantidad": 1,
+                "precio_unitario": 78500
+            },
+            {
+                "id_producto": 102,
+                "cantidad": 1,
+                "precio_unitario": 145000
+            },
+            {
+                "id_producto": 201,
+                "cantidad": 1,
+                "precio_unitario": 65000.5
+            },
+            {
+                "id_producto": 202,
+                "cantidad": 1,
+                "precio_unitario": 32500
+            },
+            {
+                "id_producto": 203,
+                "cantidad": 1,
+                "precio_unitario": 89900
+            }
+        ],
+        "subtotal": 940800.5,
+        "iva": 197568.11,
+        "total": 1138368.61,
+        "estado_pago": "pendiente"
+    }
+]
