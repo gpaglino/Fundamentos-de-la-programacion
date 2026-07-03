@@ -1,12 +1,10 @@
 <?php
-/**
- * registro.php — Formulario para postular un nuevo usuario (estado pendiente).
- */
+// Aquí se registran usuarios nuevos
+// Los datos se guardan seguros y la cuenta queda pendiente de aprobación
 
 require_once __DIR__ . '/src/auth.php';
 iniciar_sesion_segura();
 
-// Si ya está logueado, no tiene sentido registrarse
 if (sesion_activa()) {
     header('Location: /index.php');
     exit();
@@ -19,22 +17,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $nombre   = trim($_POST['nombre']   ?? '');
     $email    = trim($_POST['email']    ?? '');
+    $dni      = trim($_POST['dni']      ?? '');
+    $fecha_nacimiento = $_POST['fecha_nacimiento'] ?? '';
     $password = $_POST['password']      ?? '';
     $confirma = $_POST['confirma']      ?? '';
 
-    // Validaciones básicas
-    if ($username === '' || $nombre === '' || $email === '' || $password === '') {
+    // Checkeamos que todo esté completo
+    if ($username === '' || $nombre === '' || $email === '' || $dni === '' || $fecha_nacimiento === '' || $password === '') {
         $error = 'Completá todos los campos.';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    }
+    // El email tiene que ser válido
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'El correo electrónico no es válido.';
-    } elseif (strlen($password) < 6) {
+    }
+    // La contraseña no puede ser muy corta
+    elseif (strlen($password) < 6) {
         $error = 'La contraseña debe tener al menos 6 caracteres.';
-    } elseif ($password !== $confirma) {
+    }
+    // Las contraseñas deben coincidir
+    elseif ($password !== $confirma) {
         $error = 'Las contraseñas no coinciden.';
-    } elseif (buscar_usuario_por_username($username) !== null) {
+    }
+    // Ver si el usuario ya existe
+    elseif (buscar_usuario_por_username($username) !== null) {
         $error = 'Ese nombre de usuario ya está en uso.';
-    } else {
-        $guardado = registrar_usuario($username, $nombre, $email, $password);
+    }
+    // Verificar que el email no esté usado
+    elseif (buscar_usuario_por_email($email) !== null) {
+        $error = 'Ese correo electrónico ya está en uso.';
+    }
+    // Chequear el DNI
+    elseif (buscar_usuario_por_dni($dni) !== null) {
+        $error = 'Ese DNI ya está registrado.';
+    }
+    else {
+        // Todo ok, guardar la cuenta
+        $guardado = registrar_usuario($username, $nombre, $email, $password, $dni, $fecha_nacimiento);
 
         if ($guardado) {
             registrar_log('REGISTRO', "Nueva postulación del usuario '{$username}' ({$nombre})");
@@ -87,6 +105,24 @@ require_once __DIR__ . '/src/_header.php';
                    name="email"
                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
                    required autocomplete="email">
+        </div>
+
+        <div class="campo">
+            <label for="dni">DNI</label>
+            <input type="text"
+                   id="dni"
+                   name="dni"
+                   value="<?= htmlspecialchars($_POST['dni'] ?? '') ?>"
+                   required>
+        </div>
+
+        <div class="campo">
+            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+            <input type="date"
+                   id="fecha_nacimiento"
+                   name="fecha_nacimiento"
+                   value="<?= htmlspecialchars($_POST['fecha_nacimiento'] ?? '') ?>"
+                   required>
         </div>
 
         <div class="campo">

@@ -52,4 +52,5 @@ Además, para algunos íconos de la interfaz se utilizaron emojis obtenidos de *
 - 🔒 Lock
 - 📦 Package
 
+
 **Emojipedia:** https://emojipedia.org/

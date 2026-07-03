@@ -24,3 +24,36 @@
 [2026-06-29 22:04:36] [USUARIO_ELIMINADO] Admin 'admin' eliminó usuario ID 2
 [2026-06-29 22:39:53] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
 [2026-07-02 12:28:01] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-03 13:24:13] [LOGIN_EXITOSO] Usuario 'guillo' inició sesión correctamente
+[2026-07-03 13:25:00] [LOGOUT] Usuario 'guillo' cerró sesión
+[2026-07-03 13:25:26] [REGISTRO] Nueva postulación del usuario 'guillermopaglino@gmail.com' (Guillermo Paglino)
+[2026-07-03 13:25:39] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-03 13:26:00] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Paglino' (ID: 4)
+[2026-07-03 13:26:14] [LOGOUT] Usuario 'admin' cerró sesión
+[2026-07-03 13:26:25] [LOGIN_EXITOSO] Usuario 'guillermopaglino@gmail.com' inició sesión correctamente
+[2026-07-03 13:26:36] [LOGOUT] Usuario 'guillermopaglino@gmail.com' cerró sesión
+[2026-07-03 13:27:07] [REGISTRO] Nueva postulación del usuario 'Jaimito' (Guillermo Paglino)
+[2026-07-03 13:28:31] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-03 13:28:56] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Paglino' (ID: 5)
+[2026-07-03 13:29:05] [USUARIO_ELIMINADO] Admin 'admin' eliminó usuario ID 5
+[2026-07-03 13:29:12] [USUARIO_ELIMINADO] Admin 'admin' eliminó usuario ID 4
+[2026-07-03 13:30:40] [USUARIO_ELIMINADO] Admin 'admin' eliminó usuario ID 3
+[2026-07-03 13:47:59] [LOGIN_FALLIDO] Intento fallido para el usuario: 'guillo'
+[2026-07-03 13:48:53] [REGISTRO] Nueva postulación del usuario 'Guillo' (Guillermo Paglino)
+[2026-07-03 13:49:06] [LOGIN_FALLIDO] Intento fallido para el usuario: 'guillo'
+[2026-07-03 13:49:11] [LOGIN_PENDIENTE] Usuario 'Guillo' intentó ingresar con cuenta pendiente
+[2026-07-03 13:49:30] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-03 13:49:52] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Paglino' (ID: 2)
+[2026-07-03 13:50:45] [LOGOUT] Usuario 'admin' cerró sesión
+[2026-07-03 13:50:51] [LOGIN_EXITOSO] Usuario 'Guillo' inició sesión correctamente
+[2026-07-03 13:51:26] [PEDIDO_CREADO] Usuario 'Guillo' realizó el pedido #5003 por $2,205,000.00
+[2026-07-03 13:52:02] [PEDIDO_CREADO] Usuario 'Guillo' realizó el pedido #5004 por $48,900.00
+[2026-07-03 13:52:16] [LOGOUT] Usuario 'Guillo' cerró sesión
+[2026-07-03 13:52:26] [LOGIN_EXITOSO] Usuario 'admin' inició sesión correctamente
+[2026-07-03 13:52:34] [LOGOUT] Usuario 'admin' cerró sesión
+[2026-07-03 13:52:43] [LOGIN_EXITOSO] Usuario 'Guillo' inició sesión correctamente
+[2026-07-03 13:52:52] [LOGOUT] Usuario 'Guillo' cerró sesión
+[2026-07-03 14:10:11] [LOGIN_EXITOSO] 'Guillo' ingresó
+[2026-07-03 14:10:22] [LOGOUT] 'Guillo' se desconectó
+[2026-07-03 14:10:37] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-03 14:11:37] [LOGOUT] 'admin' se desconectó

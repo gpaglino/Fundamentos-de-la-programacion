@@ -39,14 +39,14 @@
         "nombre": "Procesador AMD Ryzen 7 5700X",
         "categoria": "Componentes",
         "precio": 315000,
-        "stock": 7
+        "stock": 0
     },
     {
         "id_producto": 302,
         "nombre": "Memoria RAM DDR4 16GB 3200MHz",
         "categoria": "Componentes",
         "precio": 48900,
-        "stock": 8
+        "stock": 7
     },
     {
         "id_producto": 303,

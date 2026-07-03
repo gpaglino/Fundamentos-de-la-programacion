@@ -1,12 +1,10 @@
 <?php
-/**
- * login.php — Formulario de autenticación de usuarios.
- */
+// Página para que los usuarios inicien sesión
 
 require_once __DIR__ . '/src/auth.php';
 iniciar_sesion_segura();
 
-// Si ya está logueado, redirigir al inicio
+// Si ya estás logueado, no tiene sentido que estés acá
 if (sesion_activa()) {
     header('Location: /index.php');
     exit();
@@ -15,19 +13,23 @@ if (sesion_activa()) {
 $error  = '';
 $exito  = '';
 
-// Procesar formulario POST
+// Si el usuario envió el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
+    // Primero vemos que no estén vacíos
     if ($username === '' || $password === '') {
         $error = 'Completá todos los campos.';
     } else {
+        // Intentamos el login
         $resultado = intentar_login($username, $password);
         if ($resultado['ok']) {
+            // Listo! Entramos
             header('Location: /index.php');
             exit();
         } else {
+            // Algo salió mal
             $error = $resultado['mensaje'];
         }
     }
@@ -49,6 +51,7 @@ $alerta_get = mensaje_get();
     <?php endif; ?>
 
     <form method="POST" action="/login.php" class="formulario">
+        <!-- Campo para el nombre de usuario -->
         <div class="campo">
             <label for="username">Usuario</label>
             <input type="text"
@@ -60,6 +63,7 @@ $alerta_get = mensaje_get();
                    autocomplete="username">
         </div>
 
+        <!-- Campo para la contraseña -->
         <div class="campo">
             <label for="password">Contraseña</label>
             <input type="password"
@@ -69,6 +73,7 @@ $alerta_get = mensaje_get();
                    autocomplete="current-password">
         </div>
 
+        <!-- Botón para enviar el formulario -->
         <button type="submit" class="btn btn-primario btn-bloque">Entrar</button>
     </form>
 

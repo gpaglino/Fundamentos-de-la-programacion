@@ -1,7 +1,6 @@
 <?php
-/**
- * logout.php — Cierra la sesión activa y redirige al inicio.
- */
+// Cerrar la sesión del usuario
+// Es lo más rápido: se borra todo y volvemos al inicio
 
 require_once __DIR__ . '/src/auth.php';
 

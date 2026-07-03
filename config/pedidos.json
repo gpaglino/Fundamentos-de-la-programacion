@@ -72,5 +72,35 @@
         "pago_habilitado": true,
         "fecha_aprobacion": "2026-06-29 21:45:32",
         "medio_pago": "transferencia"
+    },
+    {
+        "id_pedido": 5003,
+        "id_usuario": 2,
+        "fecha_pedido": "2026-07-03 13:51:26",
+        "estado": "pendiente",
+        "items": [
+            {
+                "id_producto": 301,
+                "cantidad": 7,
+                "precio_unitario": 315000
+            }
+        ],
+        "total_pagado": 2205000,
+        "pago_habilitado": false
+    },
+    {
+        "id_pedido": 5004,
+        "id_usuario": 2,
+        "fecha_pedido": "2026-07-03 13:52:02",
+        "estado": "pendiente",
+        "items": [
+            {
+                "id_producto": 302,
+                "cantidad": 1,
+                "precio_unitario": 48900
+            }
+        ],
+        "total_pagado": 48900,
+        "pago_habilitado": false
     }
 ]

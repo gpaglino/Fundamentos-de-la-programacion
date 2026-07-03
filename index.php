@@ -1,4 +1,6 @@
 <?php
+// Esta es la página principal de TecnoShop
+// Aquí se muestra el inicio dependiendo si estás logueado o no
 
 require_once __DIR__ . '/src/auth.php';
 iniciar_sesion_segura();

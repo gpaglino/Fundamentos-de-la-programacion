@@ -1,24 +1,52 @@
 <?php
+// Panel de admin
+// Acá los admins pueden:
+// - Aprobar usuarios nuevos
+// - Agregar y editar productos
+// - Manejar pedidos
+
 require_once __DIR__ . '/src/auth.php';
+
 requerir_admin();
 
 $mensaje = '';
 $tipo_alerta = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Aprobar usuarios
     if (isset($_POST['aprobar_id'])) {
         $id_aprobar = (int)$_POST['aprobar_id'];
         if ($id_aprobar === (int)$_SESSION['id_usuario']) {
-            $mensaje = 'No podés modificar tu propio estado.';
+            $mensaje = 'No podés modificarte a ti mismo.';
             $tipo_alerta = 'error';
         } else {
             $nombre_aprobado = aprobar_usuario($id_aprobar);
             if ($nombre_aprobado !== null) {
-                registrar_log('USUARIO_APROBADO', "Admin '{$_SESSION['username']}' aprobó a '{$nombre_aprobado}' (ID: {$id_aprobar})");
-                $mensaje = "Usuario \"{$nombre_aprobado}\" aprobado exitosamente.";
+                registrar_log('USUARIO_APROBADO', "Admin '{$_SESSION['username']}' aprobó a '{$nombre_aprobado}'");
+                $mensaje = "Usuario \"{$nombre_aprobado}\" aprobado!";
                 $tipo_alerta = 'exito';
             } else {
-                $mensaje = 'No se encontró el usuario o ya estaba activo.';
+                $mensaje = 'Algo salió mal con ese usuario.';
+                $tipo_alerta = 'error';
+            }
+        }
+    }
+    
+    // Rechazar solicitudes
+    if (isset($_POST['rechazar_id'])) {
+        $id_rechazar = (int)$_POST['rechazar_id'];
+        if ($id_rechazar === (int)$_SESSION['id_usuario']) {
+            $mensaje = 'No puedes rechazarte a ti mismo.';
+            $tipo_alerta = 'error';
+        } else {
+            $usuario = buscar_usuario_por_id($id_rechazar);
+            $rechazado = rechazar_usuario($id_rechazar);
+            if ($rechazado) {
+                registrar_log('USUARIO_RECHAZADO', "Admin '{$_SESSION['username']}' rechazó a '{$usuario['nombre']}'");
+                $mensaje = "Solicitud rechazada.";
+                $tipo_alerta = 'exito';
+            } else {
+                $mensaje = 'Error al rechazar.';
                 $tipo_alerta = 'error';
             }
         }
@@ -32,16 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stock = (int)($_POST['stock'] ?? 0);
             
             if ($nombre === '' || $categoria === '' || $precio <= 0 || $stock < 0) {
-                $mensaje = 'Completá todos los campos correctamente.';
+                $mensaje = 'Los datos no son válidos.';
                 $tipo_alerta = 'error';
             } else {
                 $agregado = agregar_producto($nombre, $categoria, $precio, $stock);
                 if ($agregado) {
-                    registrar_log('PRODUCTO_AGREGADO', "Admin '{$_SESSION['username']}' agregó producto '{$nombre}'");
-                    $mensaje = "Producto \"{$nombre}\" agregado exitosamente.";
+                    registrar_log('PRODUCTO_AGREGADO', "Admin '{$_SESSION['username']}' agregó '{$nombre}'");
+                    $mensaje = "Producto \"{$nombre}\" agregado!";
                     $tipo_alerta = 'exito';
                 } else {
-                    $mensaje = 'Error al agregar el producto.';
+                    $mensaje = 'No se pudo agregar.';
                     $tipo_alerta = 'error';
                 }
             }
@@ -58,11 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $actualizado = actualizar_stock_producto($id_producto, $nuevo_stock);
                 if ($actualizado) {
                     $producto = buscar_producto_por_id($id_producto);
-                    registrar_log('STOCK_ACTUALIZADO', "Admin '{$_SESSION['username']}' actualizó stock de '{$producto['nombre']}'");
-                    $mensaje = 'Stock actualizado exitosamente.';
+                    registrar_log('STOCK_ACTUALIZADO', "Admin actualizó stock de '{$producto['nombre']}'");
+                    $mensaje = 'Stock actualizado.';
                     $tipo_alerta = 'exito';
                 } else {
-                    $mensaje = 'Error al actualizar el stock.';
+                    $mensaje = 'Error.';
                     $tipo_alerta = 'error';
                 }
             }
@@ -72,11 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_producto = (int)$_POST['id_producto'];
             $eliminado = eliminar_producto($id_producto);
             if ($eliminado) {
-                registrar_log('PRODUCTO_ELIMINADO', "Admin '{$_SESSION['username']}' eliminó producto ID {$id_producto}");
-                $mensaje = 'Producto eliminado exitosamente.';
+                registrar_log('PRODUCTO_ELIMINADO', "Admin eliminó producto ID {$id_producto}");
+                $mensaje = 'Producto eliminado.';
                 $tipo_alerta = 'exito';
             } else {
-                $mensaje = 'Error al eliminar el producto.';
+                $mensaje = 'Error.';
                 $tipo_alerta = 'error';
             }
         }
@@ -88,25 +116,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($decision === 'aprobar') {
                 $actualizado = cambiar_estado_pedido($id_pedido, 'aprobado');
                 if ($actualizado) {
-                    $pedido = buscar_pedido_por_id($id_pedido);
-                    $usuario = buscar_usuario_por_id($pedido['id_usuario']);
-                    registrar_log('PEDIDO_APROBADO', "Admin '{$_SESSION['username']}' aprobó pedido #{$id_pedido}");
-                    $mensaje = "Pedido #{$id_pedido} aprobado. Factura generada y pago habilitado.";
+                    registrar_log('PEDIDO_APROBADO', "Admin aprobó pedido #{$id_pedido}");
+                    $mensaje = "Pedido #{$id_pedido} aprobado! Se generó la factura.";
                     $tipo_alerta = 'exito';
                 } else {
-                    $mensaje = 'Error al aprobar el pedido.';
+                    $mensaje = 'No se pudo aprobar.';
                     $tipo_alerta = 'error';
                 }
             } elseif ($decision === 'rechazar') {
                 $actualizado = cambiar_estado_pedido($id_pedido, 'rechazado');
                 if ($actualizado) {
-                    $pedido = buscar_pedido_por_id($id_pedido);
-                    $usuario = buscar_usuario_por_id($pedido['id_usuario']);
-                    registrar_log('PEDIDO_RECHAZADO', "Admin '{$_SESSION['username']}' rechazó pedido #{$id_pedido}");
+                    registrar_log('PEDIDO_RECHAZADO', "Admin rechazó pedido #{$id_pedido}");
                     $mensaje = "Pedido #{$id_pedido} rechazado.";
                     $tipo_alerta = 'exito';
                 } else {
-                    $mensaje = 'Error al rechazar el pedido.';
+                    $mensaje = 'Error.';
                     $tipo_alerta = 'error';
                 }
             }
@@ -116,16 +140,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_usuario = (int)$_POST['id_usuario'];
             
             if ($id_usuario === (int)$_SESSION['id_usuario']) {
-                $mensaje = 'No podés eliminar tu propio usuario.';
+                $mensaje = 'No puedes eliminarte a ti mismo.';
                 $tipo_alerta = 'error';
             } else {
                 $eliminado = eliminar_usuario($id_usuario);
                 if ($eliminado) {
-                    registrar_log('USUARIO_ELIMINADO', "Admin '{$_SESSION['username']}' eliminó usuario ID {$id_usuario}");
-                    $mensaje = 'Usuario eliminado exitosamente.';
+                    registrar_log('USUARIO_ELIMINADO', "Admin eliminó usuario ID {$id_usuario}");
+                    $mensaje = 'Usuario eliminado.';
                     $tipo_alerta = 'exito';
                 } else {
-                    $mensaje = 'Error al eliminar el usuario.';
+                    $mensaje = 'Error.';
                     $tipo_alerta = 'error';
                 }
             }
@@ -133,6 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Cargar datos
 $todos_usuarios = leer_json(RUTA_USUARIOS);
 $pendientes = [];
 $activos = [];
@@ -174,7 +199,7 @@ require_once __DIR__ . '/src/_header.php';
                     <th>Usuario</th>
                     <th>Email</th>
                     <th>Fecha registro</th>
-                    <th>Acción</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -186,9 +211,13 @@ require_once __DIR__ . '/src/_header.php';
                     <td><?= htmlspecialchars($u['email']) ?></td>
                     <td><?= htmlspecialchars($u['fecha_registro']) ?></td>
                     <td>
-                        <form method="POST" action="/admin_panel.php" onsubmit="return confirm('¿Aprobar a <?= htmlspecialchars($u['nombre'], ENT_QUOTES) ?>?')">
+                        <form method="POST" action="/admin_panel.php" class="formulario-inline" onsubmit="return confirm('¿Aprobar a <?= htmlspecialchars($u['nombre'], ENT_QUOTES) ?>?')">
                             <input type="hidden" name="aprobar_id" value="<?= (int)$u['id_usuario'] ?>">
-                            <button type="submit" class="btn btn-aprobar">Dar de alta</button>
+                            <button type="submit" class="btn btn-chico btn-aprobar">Aprobar</button>
+                        </form>
+                        <form method="POST" action="/admin_panel.php" class="formulario-inline" onsubmit="return confirm('¿Rechazar solicitud de <?= htmlspecialchars($u['nombre'], ENT_QUOTES) ?>?')">
+                            <input type="hidden" name="rechazar_id" value="<?= (int)$u['id_usuario'] ?>">
+                            <button type="submit" class="btn btn-chico btn-rechazar">Rechazar</button>
                         </form>
                     </td>
                 </tr>

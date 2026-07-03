@@ -1,13 +1,19 @@
 <?php
+// Página del catálogo
+// Muestra todos los productos separados por categorías
+// Los usuarios activos pueden comprar, los admins solo ven
+
 require_once __DIR__ . '/src/auth.php';
 
 requerir_activo();
 
+// Ver si es admin para no mostrar el carrito de compra
 $es_admin = $_SESSION['rol'] === 'admin';
 
-// Leer catálogo y agrupar por categoría
+// Cargamos todos los productos
 $todos_productos = leer_json(RUTA_PRODUCTOS);
 
+// Los agrupamos por categoría para mostrar mejor
 $por_categoria = [];
 foreach ($todos_productos as $producto) {
     $cat = $producto['categoria'];
@@ -16,28 +22,27 @@ foreach ($todos_productos as $producto) {
     }
     $por_categoria[$cat][] = $producto;
 }
-ksort($por_categoria); // ordenar categorías alfabéticamente
+ksort($por_categoria); // alfabetico
 
-// Mensajes de resultado de pedido previo
+// Vemos si viene algun mensaje del pedido anterior
 $mensaje_pedido = '';
 $tipo_pedido    = '';
-
 $resultado_get = $_GET['pedido'] ?? '';
 
 if ($resultado_get === 'ok') {
     $num = (int)($_GET['numero'] ?? 0);
-    $mensaje_pedido = "Pedido #{$num} registrado con éxito. ¡Gracias por tu compra!";
+    $mensaje_pedido = "Pedido #{$num} registrado con éxito. ¡Gracias!";
     $tipo_pedido = 'exito';
 } elseif ($resultado_get === 'pendiente') {
     $num = (int)($_GET['numero'] ?? 0);
-    $mensaje_pedido = "Pedido #{$num} registrado exitosamente. Aguardá la aprobación del administrador para proceder con el pago.";
+    $mensaje_pedido = "Pedido #{$num} creado. Espera que el admin lo apruebe.";
     $tipo_pedido = 'aviso';
 } elseif ($resultado_get === 'vacio') {
-    $mensaje_pedido = 'No seleccionaste ningún producto o las cantidades eran cero.';
+    $mensaje_pedido = 'Necesitas seleccionar al menos un producto.';
     $tipo_pedido = 'aviso';
 } elseif ($resultado_get === 'error') {
     $detalle = htmlspecialchars(urldecode($_GET['detalle'] ?? 'Error desconocido'));
-    $mensaje_pedido = "Error al procesar el pedido: {$detalle}";
+    $mensaje_pedido = "Error: {$detalle}";
     $tipo_pedido = 'error';
 }
 
@@ -97,7 +102,7 @@ require_once __DIR__ . '/src/_header.php';
 
         <?php if (!$es_admin): ?>
         <div class="pedido-footer">
-            <p class="pedido-aviso">Revisá las cantidades antes de confirmar. El stock se descontará al confirmar.</p>
+            <p class="pedido-aviso">Controla bien la cantidad. Una vez que confirmes se descontara el stock.</p>
             <button type="submit" class="btn btn-primario btn-grande"
                     onclick="return validarPedido()">
                 Confirmar pedido
@@ -110,10 +115,6 @@ require_once __DIR__ . '/src/_header.php';
 </section>
 
 <script>
-/**
- * Validación del lado del cliente: verifica que al menos un producto
- * tenga cantidad mayor a 0 antes de enviar el formulario.
- */
 function validarPedido() {
     const inputs = document.querySelectorAll('.input-cantidad');
     let total = 0;
@@ -121,10 +122,10 @@ function validarPedido() {
         total += parseInt(inp.value, 10) || 0;
     });
     if (total === 0) {
-        alert('Seleccioná al menos un producto con cantidad mayor a 0.');
+        alert('Seleccioná al menos un producto.');
         return false;
     }
-    return confirm('¿Confirmar el pedido con los productos seleccionados?');
+    return confirm('¿Confirmar el pedido?');
 }
 </script>
 

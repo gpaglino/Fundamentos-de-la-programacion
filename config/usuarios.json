@@ -5,18 +5,24 @@
         "nombre": "Administrador General",
         "email": "admin@eshop.com",
         "password_hash": "$2y$10$Ig6jCSeCGzKjDSzRxKiOXuIo3.NkV5cw53InQserxOasQD7Q0YLTu",
+        "dni": "",
+        "fecha_nacimiento": "",
+        "edad": 0,
         "rol": "admin",
         "estado": "activo",
         "fecha_registro": "2026-06-01 09:00:00"
     },
     {
-        "id_usuario": 3,
-        "username": "guillo",
+        "id_usuario": 2,
+        "username": "Guillo",
         "nombre": "Guillermo Paglino",
         "email": "gpaglino@gmail.com",
-        "password_hash": "$2y$10$8SYlE3RvN6oOI25D4PcPkOpq0qEa7k5trAItf5Xtq1E4JvY5REpdO",
+        "password_hash": "$2y$10$b5K3ywp6nht7.9FdMzr47.XqCEO2ih6m6Vu9WzJCgZ5sR8eKDC7dW",
+        "dni": "31686911",
+        "fecha_nacimiento": "1985-10-08",
+        "edad": 40,
         "rol": "usuario",
         "estado": "activo",
-        "fecha_registro": "2026-06-23 13:41:10"
+        "fecha_registro": "2026-07-03 13:48:53"
     }
 ]
