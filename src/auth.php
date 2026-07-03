@@ -9,12 +9,12 @@ define('RUTA_PRODUCTOS', __DIR__ . '/../config/productos.json');
 define('RUTA_FACTURAS',  __DIR__ . '/../config/facturas.json');
 define('RUTA_LOG',       __DIR__ . '/../logs/auditoria.log');
 
-// Si no interactês en 5 minutos, se te cierra la sesión
+// Si no interactuas en 5 minutos, se cierra la sesión
 define('TIMEOUT_SESION', 300);
 
-// ============================================================================
+
 // SESIÓN
-// ============================================================================
+
 
 function iniciar_sesion_segura(): void {
     // Solo la iniciamos si no está abierta
@@ -71,9 +71,9 @@ function requerir_activo(): void {
     }
 }
 
-// ============================================================================
+
 // JSON
-// ============================================================================
+
 
 function leer_json(string $ruta): array {
     if (!is_readable($ruta)) {
@@ -92,9 +92,9 @@ function escribir_json(string $ruta, array $datos): bool {
     return file_put_contents($ruta, $json, LOCK_EX) !== false;
 }
 
-// ============================================================================
+
 // BUSCAR USUARIOS
-// ============================================================================
+
 
 function buscar_usuario_por_username(string $username): ?array {
     foreach (leer_json(RUTA_USUARIOS) as $u) {
@@ -147,9 +147,9 @@ function proximo_id_usuario(): int {
     return max(array_column($usuarios, 'id_usuario')) + 1;
 }
 
-// ============================================================================
+
 // USUARIOS
-// ============================================================================
+
 
 function registrar_usuario(string $username, string $nombre, string $email, string $password, string $dni, string $fecha_nacimiento): bool {
     $usuarios = leer_json(RUTA_USUARIOS);
@@ -217,9 +217,8 @@ function eliminar_usuario(int $id): bool {
     return escribir_json(RUTA_USUARIOS, array_values($usuarios_filtrados));
 }
 
-// ============================================================================
+
 // LOGIN
-// ============================================================================
 
 function intentar_login(string $username, string $password): array {
     $usuario = buscar_usuario_por_username($username);

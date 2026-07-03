@@ -57,3 +57,6 @@
 [2026-07-03 14:10:22] [LOGOUT] 'Guillo' se desconectó
 [2026-07-03 14:10:37] [LOGIN_EXITOSO] 'admin' ingresó
 [2026-07-03 14:11:37] [LOGOUT] 'admin' se desconectó
+[2026-07-03 14:29:21] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-03 14:30:01] [STOCK_ACTUALIZADO] Admin actualizó stock de 'Procesador AMD Ryzen 7 5700X'
+[2026-07-03 14:30:35] [LOGOUT] 'admin' se desconectó
