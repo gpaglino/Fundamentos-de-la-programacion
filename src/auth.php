@@ -1,6 +1,6 @@
 <?php
-// Este archivo hace toda la magia: auth, usuarios, productos, pedidos
-// Acá está la lógica central de la app
+
+// Lógica central de la app
 
 // Rutas donde guardamos todo en JSON
 define('RUTA_USUARIOS',  __DIR__ . '/../config/usuarios.json');
@@ -12,8 +12,9 @@ define('RUTA_LOG',       __DIR__ . '/../logs/auditoria.log');
 // Si no interactuas en 5 minutos, se cierra la sesión
 define('TIMEOUT_SESION', 300);
 
-
+//=========================================================================
 // SESIÓN
+//=========================================================================
 
 
 function iniciar_sesion_segura(): void {
@@ -72,7 +73,9 @@ function requerir_activo(): void {
 }
 
 
+//=========================================================================
 // JSON
+//=========================================================================
 
 
 function leer_json(string $ruta): array {
@@ -92,13 +95,15 @@ function escribir_json(string $ruta, array $datos): bool {
     return file_put_contents($ruta, $json, LOCK_EX) !== false;
 }
 
-
+//=========================================================================
 // BUSCAR USUARIOS
+//=========================================================================
 
 
 function buscar_usuario_por_username(string $username): ?array {
+    $username_lower = strtolower($username);
     foreach (leer_json(RUTA_USUARIOS) as $u) {
-        if ($u['username'] === $username) {
+        if (strtolower($u['username']) === $username_lower) {
             return $u;
         }
     }
@@ -115,8 +120,9 @@ function buscar_usuario_por_id(int $id): ?array {
 }
 
 function buscar_usuario_por_email(string $email): ?array {
+    $email_lower = strtolower($email);
     foreach (leer_json(RUTA_USUARIOS) as $u) {
-        if ($u['email'] === $email) {
+        if (strtolower($u['email']) === $email_lower) {
             return $u;
         }
     }
@@ -124,8 +130,9 @@ function buscar_usuario_por_email(string $email): ?array {
 }
 
 function buscar_usuario_por_dni(string $dni): ?array {
+    $dni_upper = strtoupper($dni);
     foreach (leer_json(RUTA_USUARIOS) as $u) {
-        if (isset($u['dni']) && $u['dni'] === $dni) {
+        if (isset($u['dni']) && strtoupper($u['dni']) === $dni_upper) {
             return $u;
         }
     }
@@ -147,8 +154,9 @@ function proximo_id_usuario(): int {
     return max(array_column($usuarios, 'id_usuario')) + 1;
 }
 
-
+//=========================================================================
 // USUARIOS
+//=========================================================================
 
 
 function registrar_usuario(string $username, string $nombre, string $email, string $password, string $dni, string $fecha_nacimiento): bool {
@@ -217,9 +225,9 @@ function eliminar_usuario(int $id): bool {
     return escribir_json(RUTA_USUARIOS, array_values($usuarios_filtrados));
 }
 
-
+//=========================================================================
 // LOGIN
-
+//=========================================================================
 function intentar_login(string $username, string $password): array {
     $usuario = buscar_usuario_por_username($username);
 
@@ -253,9 +261,9 @@ function cerrar_sesion(): void {
     registrar_log('LOGOUT', "'{$username}' se desconectó");
 }
 
-// ============================================================================
+
 // LOG
-// ============================================================================
+
 
 function registrar_log(string $evento, string $mensaje): void {
     $linea = sprintf(
