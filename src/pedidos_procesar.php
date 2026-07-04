@@ -1,30 +1,18 @@
 <?php
-// ============================================================================
-// PROCESADOR DE PEDIDOS (PEDIDOS_PROCESAR.PHP)
-// ============================================================================
-// Script que recibe el formulario de compra desde el catálogo.
-// Valida que el usuario tenga stock suficiente de cada producto.
-// Decrementa el stock después de validar.
-// Crea un nuevo pedido en estado 'pendiente' esperando aprobación del admin.
-// Registra el evento en el log de auditoría.
-// ============================================================================
-
+// Procesar el formulario de pedidos del catálogo
 require_once __DIR__ . '/auth.php';
 
-// Solo usuarios con cuenta aprobada pueden realizar pedidos
 requerir_activo();
 
-// Solo aceptamos peticiones POST (envío de formulario)
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: /catalogo.php');
     exit();
 }
 
-// Leemos los datos actuales de productos y pedidos desde los archivos JSON
 $productos_json = leer_json(RUTA_PRODUCTOS);
 $pedidos        = leer_json(RUTA_PEDIDOS);
 
-// Creamos un índice de productos para búsqueda rápida por ID
+// Armar índice de productos para buscar por ID
 $indice_productos = [];
 foreach ($productos_json as $idx => $prod) {
     $indice_productos[(int)$prod['id_producto']] = $idx;

@@ -60,3 +60,20 @@
 [2026-07-03 14:29:21] [LOGIN_EXITOSO] 'admin' ingresó
 [2026-07-03 14:30:01] [STOCK_ACTUALIZADO] Admin actualizó stock de 'Procesador AMD Ryzen 7 5700X'
 [2026-07-03 14:30:35] [LOGOUT] 'admin' se desconectó
+[2026-07-03 14:46:05] [LOGIN_EXITOSO] 'Guillo' ingresó
+[2026-07-03 14:46:11] [LOGOUT] 'Guillo' se desconectó
+[2026-07-03 14:46:17] [LOGIN_FALLIDO] Intento fallido: 'guillo'
+[2026-07-03 14:46:23] [LOGIN_FALLIDO] Intento fallido: 'vino'
+[2026-07-03 14:46:30] [LOGIN_FALLIDO] Intento fallido: 'vino'
+[2026-07-03 14:46:36] [LOGIN_FALLIDO] Intento fallido: 'vino'
+[2026-07-03 14:46:48] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-03 14:47:01] [LOGOUT] 'admin' se desconectó
+[2026-07-03 14:48:33] [REGISTRO] Nueva postulación del usuario 'guillo' (Guillermo Coppola)
+[2026-07-03 14:48:47] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-03 14:48:55] [USUARIO_RECHAZADO] Admin 'admin' rechazó a 'Guillermo Coppola'
+[2026-07-03 14:51:34] [LOGOUT] 'admin' se desconectó
+[2026-07-03 14:51:38] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-03 14:52:36] [LOGOUT] 'admin' se desconectó
+[2026-07-03 14:53:22] [REGISTRO] Nueva postulación del usuario 'guillo' (Guillermo Coppola)
+[2026-07-03 14:53:34] [LOGIN_PENDIENTE] Usuario pendiente: 'guillo'
+[2026-07-03 14:53:42] [LOGIN_EXITOSO] 'admin' ingresó

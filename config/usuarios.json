@@ -24,5 +24,18 @@
         "rol": "usuario",
         "estado": "activo",
         "fecha_registro": "2026-07-03 13:48:53"
+    },
+    {
+        "id_usuario": 3,
+        "username": "guillo",
+        "nombre": "Guillermo Coppola",
+        "email": "gasd@sadsa.com",
+        "password_hash": "$2y$10$kLqV2iwCr9MolcDDJDjpVu504DaW1i2zEDPGGIy8iajsFM0mSNJrq",
+        "dni": "31686912",
+        "fecha_nacimiento": "2011-11-11",
+        "edad": 14,
+        "rol": "usuario",
+        "estado": "pendiente",
+        "fecha_registro": "2026-07-03 14:53:22"
     }
 ]

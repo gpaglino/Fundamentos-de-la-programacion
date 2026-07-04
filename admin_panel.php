@@ -1,10 +1,5 @@
 <?php
-// Panel de admin
-// Acá los admins pueden:
-// - Aprobar usuarios nuevos
-// - Agregar y editar productos
-// - Manejar pedidos
-
+// Panel de administración
 require_once __DIR__ . '/src/auth.php';
 
 requerir_admin();
@@ -13,7 +8,7 @@ $mensaje = '';
 $tipo_alerta = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Aprobar usuarios
+    // Aprobar usuario pendiente
     if (isset($_POST['aprobar_id'])) {
         $id_aprobar = (int)$_POST['aprobar_id'];
         if ($id_aprobar === (int)$_SESSION['id_usuario']) {
@@ -52,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
+    // Acciones de productos y usuarios
     if (isset($_POST['accion'])) {
         if ($_POST['accion'] === 'agregar_producto') {
             $nombre = trim($_POST['nombre'] ?? '');
@@ -75,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
+        // Actualizar stock de un producto
         if ($_POST['accion'] === 'actualizar_stock') {
             $id_producto = (int)$_POST['id_producto'];
             $nuevo_stock = (int)$_POST['nuevo_stock'];
@@ -96,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
+        // Eliminar un producto
         if ($_POST['accion'] === 'eliminar_producto') {
             $id_producto = (int)$_POST['id_producto'];
             $eliminado = eliminar_producto($id_producto);
@@ -109,6 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
+        // Aprobar o rechazar pedidos
         if ($_POST['accion'] === 'procesar_pedido') {
             $id_pedido = (int)$_POST['id_pedido'];
             $decision = $_POST['decision'] ?? '';
@@ -136,11 +135,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
+        // Eliminar usuario
         if ($_POST['accion'] === 'eliminar_usuario') {
             $id_usuario = (int)$_POST['id_usuario'];
             
             if ($id_usuario === (int)$_SESSION['id_usuario']) {
-                $mensaje = 'No puedes eliminarte a ti mismo.';
+                $mensaje = 'No podés eliminarte a ti mismo.';
                 $tipo_alerta = 'error';
             } else {
                 $eliminado = eliminar_usuario($id_usuario);
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Cargar datos
+// Separar usuarios por estado
 $todos_usuarios = leer_json(RUTA_USUARIOS);
 $pendientes = [];
 $activos = [];
@@ -170,6 +170,7 @@ foreach ($todos_usuarios as $u) {
     }
 }
 
+// Cargar productos y pedidos pendientes
 $todos_productos = leer_json(RUTA_PRODUCTOS);
 $pedidos_pendientes = obtener_pedidos_pendientes();
 

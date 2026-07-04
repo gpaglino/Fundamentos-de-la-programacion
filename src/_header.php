@@ -1,24 +1,10 @@
 <?php
-/**
- * ENCABEZADO Y MENÓ DE NAVEGACIÓN (_HEADER.PHP)
- * Este archivo se incluye al inicio de cada página pública.
- * Contiene:
- * - El DOCTYPE y etiquetas HTML básicas
- * - El logo y título de la página
- * - El menú de navegación (que varía según el estado del usuario)
- * 
- * USO:
- * Incluir en cualquier página como:
- *   $titulo_pagina = 'Mi Página';
- *   require_once __DIR__ . '/src/_header.php';
-*/
-
-// Verificamos el estado de la sesión del usuario para mostrar el menú apropiado
+// Encabezado común para todas las páginas
+// Verificar estado del usuario para el menú
 $logueado = sesion_activa();
 $es_admin = $logueado && ($_SESSION['rol'] === 'admin');
 $es_activo = $logueado && ($_SESSION['estado'] === 'activo');
 $nombre_usuario = $logueado ? htmlspecialchars($_SESSION['nombre']) : '';
-?>
 ?>
 <!DOCTYPE html>
 <html lang="es">

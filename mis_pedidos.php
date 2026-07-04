@@ -1,23 +1,14 @@
 <?php
-// PÁGINA MIS PEDIDOS (MIS_PEDIDOS.PHP)
-
-// Muestra al usuario el historial de todos sus pedidos.
-// Para cada pedido se muestran:
-// - Estado: pendiente, aprobado, rechazado
-// - Productos ordenados con cantidades
-// - Información de facturación si fue aprobado
-// - Datos bancarios para realizar el pago
-
-
+// Página para ver los pedidos del usuario
 require_once __DIR__ . '/src/auth.php';
 
 requerir_activo();
 
-// Traer los pedidos del usuario
+// Obtener pedidos y facturas del usuario actual
 $pedidos_usuario = obtener_pedidos_usuario((int)$_SESSION['id_usuario']);
 $facturas_usuario = obtener_facturas_usuario((int)$_SESSION['id_usuario']);
 
-// Index rápido para buscar facturas
+// Armar un mapa para vincular facturas con pedidos
 $facturas_por_pedido = [];
 foreach ($facturas_usuario as $factura) {
     $facturas_por_pedido[(int)$factura['id_pedido']] = $factura;
