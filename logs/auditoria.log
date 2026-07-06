@@ -78,3 +78,16 @@
 [2026-07-03 14:53:34] [LOGIN_PENDIENTE] Usuario pendiente: 'guillo'
 [2026-07-03 14:53:42] [LOGIN_EXITOSO] 'admin' ingresó
 [2026-07-04 13:43:07] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-04 23:22:16] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-04 23:22:45] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Coppola'
+[2026-07-04 23:22:52] [LOGOUT] 'admin' se desconectó
+[2026-07-04 23:23:48] [REGISTRO] Nueva postulación del usuario 'ASDG' (GUILLO)
+[2026-07-04 23:25:01] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-04 23:25:07] [USUARIO_RECHAZADO] Admin 'admin' rechazó a 'GUILLO'
+[2026-07-04 23:25:20] [USUARIO_ELIMINADO] Admin eliminó usuario ID 2
+[2026-07-06 00:16:49] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-06 00:17:14] [LOGOUT] 'admin' se desconectó
+[2026-07-06 00:18:54] [REGISTRO] Nueva postulación del usuario 'Guillote' (Guillermo Coppola)
+[2026-07-06 00:19:08] [LOGIN_EXITOSO] 'admin' ingresó
+[2026-07-06 00:20:38] [USUARIO_APROBADO] Admin 'admin' aprobó a 'Guillermo Coppola'
+[2026-07-06 00:20:52] [LOGOUT] 'admin' se desconectó

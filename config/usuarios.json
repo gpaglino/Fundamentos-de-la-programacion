@@ -13,19 +13,6 @@
         "fecha_registro": "2026-06-01 09:00:00"
     },
     {
-        "id_usuario": 2,
-        "username": "Guillo",
-        "nombre": "Guillermo Paglino",
-        "email": "gpaglino@gmail.com",
-        "password_hash": "$2y$10$b5K3ywp6nht7.9FdMzr47.XqCEO2ih6m6Vu9WzJCgZ5sR8eKDC7dW",
-        "dni": "31686911",
-        "fecha_nacimiento": "1985-10-08",
-        "edad": 40,
-        "rol": "usuario",
-        "estado": "activo",
-        "fecha_registro": "2026-07-03 13:48:53"
-    },
-    {
         "id_usuario": 3,
         "username": "guillo",
         "nombre": "Guillermo Coppola",
@@ -35,7 +22,20 @@
         "fecha_nacimiento": "2011-11-11",
         "edad": 14,
         "rol": "usuario",
-        "estado": "pendiente",
+        "estado": "activo",
         "fecha_registro": "2026-07-03 14:53:22"
+    },
+    {
+        "id_usuario": 4,
+        "username": "Guillote",
+        "nombre": "Guillermo Coppola",
+        "email": "Guillermopaglino@gmail.com",
+        "password_hash": "$2y$10$KyLTEDs680f\/2mypGla8JukJRNxx77Rv8EZG1ivF5UupTSKlemT0q",
+        "dni": "31686911",
+        "fecha_nacimiento": "1985-10-08",
+        "edad": 40,
+        "rol": "usuario",
+        "estado": "activo",
+        "fecha_registro": "2026-07-06 00:18:54"
     }
 ]
